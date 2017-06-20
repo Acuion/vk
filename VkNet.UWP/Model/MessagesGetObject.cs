@@ -30,17 +30,6 @@ namespace VkNet.Model
 		/// Диалоги
 		/// </summary>
 		public ReadOnlyCollection<Message> Messages { get; set; }
-
-		/// <summary>
-		/// Идентификатор последнего сообщения, прочитанного текущим пользователем
-		/// </summary>
-		public uint InRead{ get; set; }
-
-		/// <summary>
-		/// Идентификатор последнего сообщения, прочитанного собеседником.
-		/// </summary>
-		public uint OutRead { get; set; }
-		
 		
 		/// <summary>
 		/// Разобрать из json.
@@ -55,8 +44,6 @@ namespace VkNet.Model
 				Unread = response["unread_dialogs"],
 				RealOffset = response["real_offset"],
 				Messages = response["items"].ToReadOnlyCollectionOf<Message>(m => m),
-				InRead = response["in_read"],
-				OutRead = response["out_read"]
 			};
 
 			return dialogsGetObject;
