@@ -47,7 +47,7 @@ namespace VkNet.Exception
 		/// Инициализирует новый экземпляр класса VkApiException
 		/// </summary>
 		/// <param name="response">Ответ от сервера vk</param>
-		public CaptchaNeededException(VkResponse response) : base(response["error_msg"])
+		public CaptchaNeededException(VkResponse response) : base(response)
 		{
 			ErrorCode = response["error_code"];
 			Sid = response["captcha_sid"];

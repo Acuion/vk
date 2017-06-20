@@ -26,6 +26,10 @@
         public string Title { get; set; }
 
         /// <summary>
+        /// Путь к аватару 200x200
+        /// </summary>
+        public string Photo200 { get; set; }
+        /// <summary>
         /// Идентификатор пользователя, который является создателем беседы.
         /// </summary>
         public long? AdminId { get; set; }
@@ -35,13 +39,17 @@
         /// </summary>
         public Collection<long> Users { get; set; }
 
-        #region Поля найденые експерементально
+        #region Поля найденые эксперементально
 
         /// <summary>
         /// Состоит ли аккаунт в беседе или покинул ее
         /// </summary>
         public bool Left { get; set; }
 
+        /// <summary>
+        /// Был ли аккаунт выкинут из беседы
+        /// </summary>
+        public bool Kicked { get; set; }
         /// <summary>
         /// Неизвестно что за поле, но оно есть в некоторых диалогах (Вроде не влияет на звоковое уведомление о новых сообщениях)
         /// </summary>
@@ -66,12 +74,14 @@
 				Id = response["id"],
 				Type = response["type"],
 				Title = response["title"],
-				AdminId = Utilities.GetNullableLongId(response["admin_id"]),
+			    Photo200 = response["photo_200"],
+                AdminId = Utilities.GetNullableLongId(response["admin_id"]),
 				Users = response["users"],
 
-				#region Поля найденые експерементально
+				#region Поля найденые эксперементально
 
-				Left = response.ContainsKey("left") && response["left"]
+				Left = response.ContainsKey("left") && response["left"],
+				Kicked = response.ContainsKey("kicked") && response["kicked"]
 			};
 			if (response.ContainsKey("push_settings"))
 			{

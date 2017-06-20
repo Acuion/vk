@@ -653,14 +653,12 @@ namespace VkNet.Categories
         /// <param name="file">Содержимое поля response из ответа специального upload сервера, полученного в результате загрузки изображения на адрес, полученный методом photos.getChatUploadServer. строка, обязательный параметр (Строка, обязательный параметр).</param>
         /// <param name="messageId">Идентификатор отправленного системного сообщения;</param>
         /// <returns>
-        /// После успешного выполнения возвращает объект, содержащий следующие поля:
-        /// message_id — идентификатор отправленного системного сообщения;
-        /// chat — объект мультидиалога.
+        /// После успешного выполнения возвращает обновлённое состояние мультидиалога
         /// </returns>
         /// <remarks>
         /// Страница документации ВКонтакте http://vk.com/dev/messages.setChatPhoto
         /// </remarks>
-        public long SetChatPhoto(out long messageId, string file)
+        public Chat SetChatPhoto(out long messageId, string file)
         {
             var parameters = new VkParameters
             {
